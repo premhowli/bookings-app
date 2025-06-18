@@ -1,50 +1,105 @@
-# Welcome to your Expo app 👋
+# Bookings App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A high-performance, theme-aware property booking app built with Expo, TypeScript, Expo Router, NativeWind, React Query, Zustand, and a JSON-server backend.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Features
 
-   ```bash
-   npm install
-   ```
+- **Home, Bookings, and Profile tabs** with file-based routing (Expo Router)
+- **Property details** with image carousel, map, features, and calendar picker
+- **Booking functionality** with robust state management and error handling
+- **Theming, and persistent user state**
+- **Performance optimizations**: memoization, lazy loading, image caching, deduped API calls, and more
+- **Strongly typed API layer** with React Query and TypeScript
+- **Custom error boundaries and performance monitoring hooks**
+- **Hermes enabled for Android for faster JS execution**
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🛠️ Setup & Installation
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### 1. Clone the repository
 
 ```bash
-npm run reset-project
+git clone <your-repo-url>
+cd bookings-app
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Install dependencies
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+### 3. Start the JSON-server backend
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npx json-server --watch db.json --port 3000
+```
+- The backend runs at `http://localhost:3000` (update `API_URL` in `services/api.ts` if needed for your emulator/device).
 
-## Join the community
+### 4. Start the Expo app
 
-Join our community of developers creating universal apps.
+```bash
+npx expo start
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Use the QR code to open in Expo Go, or press `a` for Android emulator, `i` for iOS simulator.
+
+---
+
+## 🖥️ Running on Emulator
+
+- **Android:**  
+  Install [Android Studio](https://developer.android.com/studio), open an emulator, then run:
+  ```bash
+  npm run android
+  ```
+- **iOS:**  
+  Install Xcode, open a simulator, then run:
+  ```bash
+  npm run ios
+  ```
+
+---
+
+## 🧑‍💻 Implementation Details
+
+- **Expo Router** for file-based navigation and lazy loading of screens
+- **React Query** for API fetching, caching, deduplication, and error handling
+- **Zustand** for global state management
+- **NativeWind** for Tailwind-style utility classes in React Native
+- **expo-image** for fast, cached image loading everywhere
+- **Hermes** enabled for Android for improved JS performance
+- **Optimized FlatList** and memoized components for smooth scrolling
+- **All API calls are strongly typed and deduplicated**
+- **Booking cards** show property details, and property data is fetched once and mapped in memory for efficiency
+- **Calendar and map components** are memoized and only re-render when necessary
+
+---
+
+## 📝 Notes
+
+- **Fuzzy search** is not enabled as part of the demo but will enhance the user experience a lot.
+- **Lazy loading** is handled automatically by Expo Router for screens; we can use `React.lazy`/`Suspense` for heavy sub-components if needed in future.
+- **Error boundaries** and performance monitoring hooks are included for robust error handling and profiling.
+
+---
+
+## 📚 Learn More
+
+- [Expo documentation](https://docs.expo.dev/)
+- [React Query](https://tanstack.com/query/latest)
+- [NativeWind](https://www.nativewind.dev/)
+- [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction)
+
+---
+
+## 🏁 Get Started
+
+1. Start the backend:  
+   `npx json-server --watch db.json --port 3000`
+2. Start the app:  
+   `npx expo start`
+3. Open in emulator or Expo Go and enjoy!

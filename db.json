@@ -1,0 +1,306 @@
+{
+  "properties": [
+    {
+      "id": "1",
+      "title": "Modern Downtown Apartment",
+      "price": 2500,
+      "location": {
+        "address": "123 Main St",
+        "city": "San Francisco",
+        "state": "CA",
+        "coordinates": {
+          "latitude": 37.7749,
+          "longitude": -122.4194
+        }
+      },
+      "features": [
+        "2 Bedrooms",
+        "2 Bathrooms",
+        "Parking",
+        "Pool"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
+        "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Luxury Beach House",
+      "price": 5000,
+      "location": {
+        "address": "456 Ocean Ave",
+        "city": "Malibu",
+        "state": "CA",
+        "coordinates": {
+          "latitude": 34.0259,
+          "longitude": -118.7798
+        }
+      },
+      "features": [
+        "4 Bedrooms",
+        "3 Bathrooms",
+        "Beachfront",
+        "Private Pool"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811"
+      ]
+    }
+  ],
+  "bookings": [
+    {
+      "id": "96b1",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-06-18",
+      "checkOut": "2025-06-22",
+      "status": "pending"
+    },
+    {
+      "id": "0a92",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-06-18",
+      "checkOut": "2025-06-22",
+      "status": "confirmed"
+    },
+    {
+      "id": "09b5",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-06-23",
+      "checkOut": "2025-06-25",
+      "status": "confirmed"
+    },
+    {
+      "id": "ecd5",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-06-26",
+      "checkOut": "2025-06-28",
+      "status": "pending"
+    },
+    {
+      "id": "1701",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-06-26",
+      "checkOut": "2025-06-28",
+      "status": "pending"
+    },
+    {
+      "id": "e195",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-06-26",
+      "checkOut": "2025-06-28",
+      "status": "confirmed"
+    },
+    {
+      "id": "615c",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-08",
+      "checkOut": "2025-07-09",
+      "status": "confirmed"
+    },
+    {
+      "id": "8b9e",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-06-29",
+      "checkOut": "2025-07-02",
+      "status": "confirmed"
+    },
+    {
+      "id": "3383",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-03",
+      "checkOut": "2025-07-05",
+      "status": "pending"
+    },
+    {
+      "id": "e64d",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-03",
+      "checkOut": "2025-07-05",
+      "status": "pending"
+    },
+    {
+      "id": "9ec8",
+      "propertyId": "2",
+      "userId": "user1",
+      "checkIn": "2025-06-18",
+      "checkOut": "2025-06-20",
+      "status": "pending"
+    },
+    {
+      "id": "32af",
+      "propertyId": "2",
+      "userId": "user1",
+      "checkIn": "2025-06-18",
+      "checkOut": "2025-06-20",
+      "status": "confirmed"
+    },
+    {
+      "id": "62e9",
+      "propertyId": "2",
+      "userId": "user1",
+      "checkIn": "2025-06-21",
+      "checkOut": "2025-06-22",
+      "status": "pending"
+    },
+    {
+      "id": "0da5",
+      "propertyId": "2",
+      "userId": "user1",
+      "checkIn": "2025-06-21",
+      "checkOut": "2025-06-22",
+      "status": "pending"
+    },
+    {
+      "id": "0067",
+      "propertyId": "2",
+      "userId": "user1",
+      "checkIn": "2025-06-21",
+      "checkOut": "2025-06-23",
+      "status": "pending"
+    },
+    {
+      "id": "dbdd",
+      "propertyId": "2",
+      "userId": "user1",
+      "checkIn": "2025-06-21",
+      "checkOut": "2025-06-23",
+      "status": "confirmed"
+    },
+    {
+      "id": "2ccf",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-03",
+      "checkOut": "2025-07-04",
+      "status": "pending"
+    },
+    {
+      "id": "9b1e",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-03",
+      "checkOut": "2025-07-04",
+      "status": "pending"
+    },
+    {
+      "id": "fcab",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-03",
+      "checkOut": "2025-07-04",
+      "status": "pending"
+    },
+    {
+      "id": "af8d",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-03",
+      "checkOut": "2025-07-04",
+      "status": "pending"
+    },
+    {
+      "id": "ef8d",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-03",
+      "checkOut": "2025-07-04",
+      "status": "confirmed"
+    },
+    {
+      "id": "d420",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-05",
+      "checkOut": "2025-07-07",
+      "status": "pending"
+    },
+    {
+      "id": "6a9a",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-05",
+      "checkOut": "2025-07-07",
+      "status": "confirmed"
+    },
+    {
+      "id": "da7b",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-10",
+      "checkOut": "2025-07-12",
+      "status": "pending"
+    },
+    {
+      "id": "434e",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-10",
+      "checkOut": "2025-07-12",
+      "status": "pending"
+    },
+    {
+      "id": "31d1",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-10",
+      "checkOut": "2025-07-12",
+      "status": "pending"
+    },
+    {
+      "id": "56e6",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-07-10",
+      "checkOut": "2025-07-12",
+      "status": "confirmed"
+    }
+  ],
+  "profile": {
+    "id": "user1",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "avatar": "https://...",
+    "bookings": [
+      "96b1",
+      "0a92",
+      "09b5",
+      "ecd5",
+      "1701",
+      "e195",
+      "615c",
+      "8b9e",
+      "3383",
+      "e64d",
+      "9ec8",
+      "32af",
+      "62e9",
+      "0da5",
+      "0067",
+      "dbdd",
+      "2ccf",
+      "9b1e",
+      "fcab",
+      "af8d",
+      "ef8d",
+      "d420",
+      "6a9a",
+      "da7b",
+      "434e",
+      "31d1",
+      "56e6"
+    ]
+  }
+}
