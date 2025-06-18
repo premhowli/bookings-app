@@ -2,8 +2,23 @@ import React, { memo } from 'react';
 import { Text } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
+interface MarkedDate {
+  selected?: boolean;
+  marked?: boolean;
+  selectedColor?: string;
+  disabled?: boolean;
+  startingDay?: boolean;
+  endingDay?: boolean;
+  color?: string;
+  textColor?: string;
+  dotColor?: string;
+  disableTouchEvent?: boolean;
+  periods?: any[];
+  customStyles?: any;
+}
+
 interface PropertyCalendarProps {
-  markedDates: Record<string, any>;
+  markedDates: { [date: string]: MarkedDate };
   onDayPress: (day: { dateString: string }) => void;
 }
 

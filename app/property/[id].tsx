@@ -11,7 +11,6 @@ export default function PropertyDetailScreen() {
     property,
     isLoading,
     backgroundColor,
-    selectedRange,
     activeIndex,
     scrollRef,
     markedDates,
@@ -34,7 +33,7 @@ export default function PropertyDetailScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor }}>
-      <ScrollView className="flex-1" style={{ backgroundColor }}>
+      <ScrollView style={{ flex: 1, backgroundColor }}>
         <PropertyImageCarousel
           images={property.images}
           activeIndex={activeIndex}

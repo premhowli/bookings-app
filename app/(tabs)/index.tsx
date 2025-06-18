@@ -1,12 +1,11 @@
 import React from "react";
-import { FlatList, Text, useColorScheme, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { PropertyCard } from "../../components";
 import { PropertySearchBar } from '../../components/property/PropertySearchBar';
 import { useHomeProperties } from "../../hooks/useHomeProperties";
 
 export default function HomeScreen() {
-  const colorScheme = useColorScheme() ?? "dark";
   const {
     searchQuery,
     handleSearchChange,
@@ -30,7 +29,7 @@ export default function HomeScreen() {
       <PropertySearchBar
         value={searchQuery}
         onChangeText={handleSearchChange}
-        colorScheme={colorScheme}
+        colorScheme={"light"}
       />
       <FlatList
         data={filteredProperties}

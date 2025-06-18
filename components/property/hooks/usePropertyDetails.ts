@@ -42,7 +42,6 @@ export function usePropertyDetails() {
     });
     if (selectedRange) {
       const { start, end } = selectedRange;
-      const startDate = new Date(start);
       const endDate = new Date(end);
       let current = new Date(start);
       while (current <= endDate) {

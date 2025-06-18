@@ -1,14 +1,17 @@
+import { Property } from '@/types';
 import { Image } from 'expo-image';
 import { useRouter } from "expo-router";
 import React, { useCallback, useRef, useState } from "react";
 import {
-    Dimensions,
-    Pressable,
-    ScrollView,
-    Text,
-    View,
+  Dimensions,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
 } from "react-native";
-import { Property } from "../types";
+
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -22,7 +25,7 @@ export const PropertyCard = React.memo(({ item }: PropertyCardProps) => {
   const scrollRef = useRef<ScrollView>(null);
   
   // Optimize onScroll handler with useCallback
-  const onScroll = useCallback((event: any) => {
+  const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const index = Math.round(event.nativeEvent.contentOffset.x / screenWidth);
     setActiveIndex(index);
   }, []);
