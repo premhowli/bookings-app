@@ -12,7 +12,6 @@ A high-performance, theme-aware property booking app built with Expo, TypeScript
 - **Theming, and persistent user state**
 - **Performance optimizations**: memoization, lazy loading, image caching, deduped API calls, and more
 - **Strongly typed API layer** with React Query and TypeScript
-- **Custom error boundaries and performance monitoring hooks**
 - **Hermes enabled for Android for faster JS execution**
 
 ---
@@ -83,7 +82,6 @@ npx expo start
 
 - **Fuzzy search** is not enabled as part of the demo but will enhance the user experience a lot.
 - **Lazy loading** is handled automatically by Expo Router for screens; we can use `React.lazy`/`Suspense` for heavy sub-components if needed in future.
-- **Error boundaries** and performance monitoring hooks are included for robust error handling and profiling.
 
 ---
 
