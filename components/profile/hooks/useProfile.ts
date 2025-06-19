@@ -1,16 +1,21 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useCallback } from 'react';
 import { useUser } from '../../../services/api';
 import { useStore } from '../../../store/useStore';
 
 export function useProfile() {
-  const { data: apiUser, isLoading } = useUser();
   const user = useStore((state) => state.user);
   const setUser = useStore((state) => state.setUser);
+  const { data: apiUser, isLoading } = useUser();
+  const queryClient = useQueryClient();
 
   const handleLogin = useCallback(() => {
-    if (apiUser) {
-      setUser(apiUser);
-    }
+    if (apiUser) setUser({
+      id: apiUser.id,
+      name: apiUser.name,
+      email: apiUser.email,
+      avatar: apiUser.avatar,
+    });
   }, [apiUser, setUser]);
 
   const handleLogout = useCallback(() => {
@@ -18,8 +23,8 @@ export function useProfile() {
   }, [setUser]);
 
   const invalidateUser = useCallback(() => {
-    // Implement logic to refresh user data if needed
-  }, []);
+    queryClient.invalidateQueries({ queryKey: ['user'] });
+  }, [queryClient]);
 
   return {
     user,

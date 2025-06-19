@@ -4,15 +4,15 @@ import { PropertyCalendar } from '../../components/property/PropertyCalendar';
 import { PropertyFeatures } from '../../components/property/PropertyFeatures';
 import { PropertyImageCarousel } from '../../components/property/PropertyImageCarousel';
 import { PropertyLocationMap } from '../../components/property/PropertyLocationMap';
-import { usePropertyDetails } from '../../hooks/usePropertyDetails';
+import { usePropertyDetails } from '../../components/property/hooks/usePropertyDetails';
 
 export default function PropertyDetailScreen() {
   const {
     property,
     isLoading,
-    backgroundColor,
     activeIndex,
     scrollRef,
+    backgroundColor,
     markedDates,
     handleDayPress,
     marker,

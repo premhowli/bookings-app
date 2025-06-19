@@ -1,142 +1,161 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { Alert } from 'react-native';
-import { Region } from 'react-native-maps';
+import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Dimensions, ScrollView } from 'react-native';
+import { useScreenTransition } from '../../../hooks/useScreenTransition';
 import { useCreateBooking, useProperty, usePropertyBookings } from '../../../services/api';
 import { useStore } from '../../../store/useStore';
 
-export function usePropertyDetails() {
-  const { id } = useLocalSearchParams<{ id: string }>();
-  const { data: property, isLoading } = useProperty(id as string);
-  const { data: bookings } = usePropertyBookings(id as string);
-  const [selectedRange, setSelectedRange] = useState<{ start: string; end: string } | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const scrollRef = useRef(null);
-  const router = useRouter();
-  const user = useStore((state) => state.user);
-  const createBooking = useCreateBooking();
- // or use theme
+const { width: screenWidth } = Dimensions.get('window');
 
-  // Get all confirmed dates for this property
-  const confirmedDates = useMemo(() => {
-    if (!bookings) return new Set<string>();
-    const dates = new Set<string>();
-    bookings.forEach((b) => {
-      if (b.status === 'confirmed') {
-        let current = new Date(b.checkIn);
-        const end = new Date(b.checkOut);
-        while (current <= end) {
-          dates.add(current.toISOString().split('T')[0]);
-          current.setDate(current.getDate() + 1);
-        }
-      }
+export function usePropertyDetails() {
+  const { id } = useLocalSearchParams();
+  const navigation = useNavigation();
+  const router = useRouter();
+  const { user } = useStore();
+  const { data: property, isLoading } = useProperty(id as string);
+  const { data: propertyBookings } = usePropertyBookings(id as string);
+  const createBooking = useCreateBooking();
+  const { backgroundColor } = useScreenTransition();
+  const [selectedRange, setSelectedRange] = useState<{ startDate: string | null; endDate: string | null }>({
+    startDate: null,
+    endDate: null,
+  });
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<ScrollView | null>(null);
+
+  useEffect(() => {
+    if (property) {
+      navigation.setOptions({ 
+        title: property.title,
+        headerBackTitle: 'Back',
+        headerBackTitleVisible: true,
+        headerShown: true,
+      });
+    }
+  }, [property, navigation]);
+
+  const confirmedBookings = useMemo(() => 
+    (propertyBookings || []).filter(b => b.status === 'confirmed'),
+    [propertyBookings]
+  );
+
+  function getDatesBetween(start: string, end: string) {
+    const dates = [];
+    let curr = new Date(start);
+    const last = new Date(end);
+    while (curr <= last) {
+      dates.push(curr.toISOString().slice(0, 10));
+      curr.setDate(curr.getDate() + 1);
+    }
+    return dates;
+  }
+
+  const disabledDates = useMemo(() => {
+    const dates: Record<string, { disabled: true }> = {};
+    confirmedBookings.forEach(b => {
+      getDatesBetween(b.checkIn, b.checkOut).forEach(date => {
+        dates[date] = { disabled: true };
+      });
     });
     return dates;
-  }, [bookings]);
+  }, [confirmedBookings]);
 
   const markedDates = useMemo(() => {
-    const dates: Record<string, any> = {};
-    // Mark confirmed dates as disabled and greyed out
-    confirmedDates.forEach((date) => {
-      dates[date] = { disabled: true, disableTouchEvent: true };
-    });
-    if (selectedRange) {
-      const { start, end } = selectedRange;
-      const endDate = new Date(end);
-      let current = new Date(start);
-      while (current <= endDate) {
-        const dateStr = current.toISOString().split('T')[0];
-        if (confirmedDates.has(dateStr)) {
-          current.setDate(current.getDate() + 1);
-          continue;
-        }
-        if (dateStr === start && dateStr === end) {
-          dates[dateStr] = { startingDay: true, endingDay: true, color: '#2563eb', textColor: '#fff' };
-        } else if (dateStr === start) {
-          dates[dateStr] = { startingDay: true, color: '#2563eb', textColor: '#fff' };
-        } else if (dateStr === end) {
-          dates[dateStr] = { endingDay: true, color: '#2563eb', textColor: '#fff' };
-        } else {
-          dates[dateStr] = { color: '#2563eb', textColor: '#fff' };
-        }
-        current.setDate(current.getDate() + 1);
+    let dates: Record<string, any> = { ...disabledDates };
+    if (selectedRange.startDate && selectedRange.endDate) {
+      let curr = new Date(selectedRange.startDate);
+      const last = new Date(selectedRange.endDate);
+      while (curr <= last) {
+        const dateStr = curr.toISOString().slice(0, 10);
+        dates[dateStr] = {
+          ...(dates[dateStr] || {}),
+          color: '#0ea5e9',
+          textColor: 'white',
+          startingDay: dateStr === selectedRange.startDate,
+          endingDay: dateStr === selectedRange.endDate,
+        };
+        curr.setDate(curr.getDate() + 1);
       }
+    } else if (selectedRange.startDate && !selectedRange.endDate) {
+      dates[selectedRange.startDate] = {
+        ...(dates[selectedRange.startDate] || {}),
+        color: '#0ea5e9',
+        textColor: 'white',
+        startingDay: true,
+        endingDay: true,
+      };
     }
     return dates;
-  }, [selectedRange, confirmedDates]);
+  }, [disabledDates, selectedRange]);
 
-  const handleDayPress = (day: { dateString: string }) => {
-    if (confirmedDates.has(day.dateString)) return;
-    if (!selectedRange) {
-      setSelectedRange({ start: day.dateString, end: day.dateString });
+  const handleDayPress = useCallback((day: { dateString: string }) => {
+    const date = day.dateString;
+    if (disabledDates[date]) return;
+    if (!selectedRange.startDate || (selectedRange.startDate && selectedRange.endDate)) {
+      setSelectedRange({ startDate: date, endDate: null });
     } else {
-      setSelectedRange((prev) =>
-        prev && day.dateString < prev.start
-          ? { start: day.dateString, end: prev.end }
-          : { start: prev.start, end: day.dateString }
-      );
+      const start = new Date(selectedRange.startDate);
+      const end = new Date(date);
+      if (end < start) {
+        setSelectedRange({ startDate: date, endDate: selectedRange.startDate });
+      } else {
+        setSelectedRange({ startDate: selectedRange.startDate, endDate: date });
+      }
     }
+  }, [selectedRange, disabledDates]);
+
+  const marker = useMemo(() => property ? {
+    latitude: property.location.coordinates.latitude,
+    longitude: property.location.coordinates.longitude,
+  } : null, [property]);
+
+  const region = useMemo(() => marker ? {
+    latitude: marker.latitude,
+    longitude: marker.longitude,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01,
+  } : undefined, [marker]);
+
+  const onScroll = (event: any) => {
+    const index = Math.round(event.nativeEvent.contentOffset.x / screenWidth);
+    setActiveIndex(index);
   };
 
-  const marker = property?.location?.coordinates || null;
-  const region: Region | undefined = marker
-    ? {
-        latitude: marker.latitude,
-        longitude: marker.longitude,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-      }
-    : undefined;
-
-  const handleBook = useCallback(() => {
-    if (!user) {
+  const handleBook = useCallback(async () => {
+    if (!user || !user.id) {
       router.push('/profile');
       return;
     }
-    if (!selectedRange || !property) {
-      Alert.alert('Please select a date range to book.');
+    if (!selectedRange.startDate || !selectedRange.endDate) {
+      alert('Please select a check-in and check-out date.');
       return;
     }
-    // Ensure at least 1 day gap between start and end
-    const start = new Date(selectedRange.start);
-    const end = new Date(selectedRange.end);
-    const diffDays = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
-    if (diffDays < 1) {
-      Alert.alert('Invalid date range', 'Please select at least a 1-day stay.');
-      return;
-    }
-    createBooking.mutate(
-      {
+    if (!property) return;
+    try {
+      await createBooking.mutateAsync({
         booking: {
           propertyId: property.id,
-          userId: user.id,
-          checkIn: selectedRange.start,
-          checkOut: selectedRange.end,
-          status: Math.random() < 0.5 ? 'pending' : 'confirmed',
+          userId: user.id.toString(),
+          checkIn: selectedRange.startDate,
+          checkOut: selectedRange.endDate,
+          status: 'confirmed',
         },
         user,
-      },
-      {
-        onSuccess: () => {
-          router.push('/bookings');
-        },
-        onError: (error: any) => {
-          Alert.alert('Booking failed', error?.message || 'An error occurred.');
-        },
-      }
-    );
+      });
+      router.push('/bookings');
+    } catch (error) {
+      console.error('Failed to create booking:', error);
+    }
   }, [user, router, selectedRange, property, createBooking]);
-
-  const onScroll = (event: any) => {
-    const index = Math.round(event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width);
-    setActiveIndex(index);
-  };
 
   return {
     property,
     isLoading,
+    backgroundColor,
     selectedRange,
+    setSelectedRange,
     activeIndex,
+    setActiveIndex,
     scrollRef,
     markedDates,
     handleDayPress,

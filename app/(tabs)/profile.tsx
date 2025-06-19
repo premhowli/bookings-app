@@ -1,12 +1,10 @@
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
 import React, { useEffect } from 'react';
 import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ProfileHeader } from '../../components/profile/ProfileHeader';
 import { ProfileLogin } from '../../components/profile/ProfileLogin';
 import { ProfileLogout } from '../../components/profile/ProfileLogout';
-import { useProfile } from '../../hooks/useProfile';
+import { useProfile } from '../../components/profile/hooks/useProfile';
 
 export default function ProfileScreen() {
   const {
@@ -17,10 +15,6 @@ export default function ProfileScreen() {
     handleLogout,
     invalidateUser,
   } = useProfile();
-
-  const colorScheme = useColorScheme();
-  const bg = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background;
-  const text = colorScheme === 'dark' ? Colors.dark.text : Colors.light.text;
 
   useEffect(() => {
     invalidateUser();

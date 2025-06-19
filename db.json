@@ -52,43 +52,27 @@
   ],
   "bookings": [
     {
-      "id": "da4b",
+      "id": "511f",
       "propertyId": "1",
       "userId": "user1",
-      "checkIn": "2025-06-18",
-      "checkOut": "2025-06-20",
-      "status": "pending"
-    },
-    {
-      "id": "a618",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-06-18",
-      "checkOut": "2025-06-20",
-      "status": "pending"
-    },
-    {
-      "id": "27c0",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-06-18",
-      "checkOut": "2025-06-20",
-      "status": "pending"
-    },
-    {
-      "id": "291e",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-06-18",
-      "checkOut": "2025-06-20",
+      "checkIn": "2025-06-19",
+      "checkOut": "2025-06-21",
       "status": "confirmed"
     },
     {
-      "id": "8136",
+      "id": "c752",
       "propertyId": "1",
       "userId": "user1",
-      "checkIn": "2025-06-21",
-      "checkOut": "2025-06-23",
+      "checkIn": "2025-06-22",
+      "checkOut": "2025-06-24",
+      "status": "confirmed"
+    },
+    {
+      "id": "f67e",
+      "propertyId": "2",
+      "userId": "user1",
+      "checkIn": "2025-06-24",
+      "checkOut": "2025-06-30",
       "status": "confirmed"
     }
   ],
@@ -98,11 +82,9 @@
     "email": "john@example.com",
     "avatar": "https://...",
     "bookings": [
-      "da4b",
-      "a618",
-      "27c0",
-      "291e",
-      "8136"
+      "511f",
+      "c752",
+      "f67e"
     ]
   }
 }

@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import BookingCard from '../../components/booking/BookingCard';
 import { BookingEmptyState } from '../../components/booking/BookingEmptyState';
 import { BookingLoadingState } from '../../components/booking/BookingLoadingState';
-import { useUserBookings } from '../../hooks/useUserBookings';
+import { useUserBookings } from '../../components/booking/hooks/useUserBookings';
 
 const ITEM_HEIGHT = 112;
 

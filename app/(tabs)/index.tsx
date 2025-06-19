@@ -1,11 +1,10 @@
-import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import React from "react";
 import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { PropertyCard } from "../../components";
 import { PropertySearchBar } from '../../components/property/PropertySearchBar';
-import { useHomeProperties } from "../../hooks/useHomeProperties";
+import { useHomeProperties } from "../../components/property/hooks/useHomeProperties";
 
 export default function HomeScreen() {
   const {
@@ -16,9 +15,6 @@ export default function HomeScreen() {
   } = useHomeProperties();
 
   const colorScheme = useColorScheme();
-  const bg = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background;
-  const text = colorScheme === 'dark' ? Colors.dark.text : Colors.light.text;
-
   if (isLoading) {
     return (
       <View className="flex-1 items-center justify-center bg-white dark:bg-neutral-900">
