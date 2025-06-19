@@ -82,6 +82,14 @@
       "checkIn": "2025-06-18",
       "checkOut": "2025-06-20",
       "status": "confirmed"
+    },
+    {
+      "id": "8136",
+      "propertyId": "1",
+      "userId": "user1",
+      "checkIn": "2025-06-21",
+      "checkOut": "2025-06-23",
+      "status": "confirmed"
     }
   ],
   "profile": {
@@ -93,7 +101,8 @@
       "da4b",
       "a618",
       "27c0",
-      "291e"
+      "291e",
+      "8136"
     ]
   }
 }

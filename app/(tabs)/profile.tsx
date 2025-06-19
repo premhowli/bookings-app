@@ -1,3 +1,5 @@
+import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
 import React, { useEffect } from 'react';
 import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -15,6 +17,10 @@ export default function ProfileScreen() {
     handleLogout,
     invalidateUser,
   } = useProfile();
+
+  const colorScheme = useColorScheme();
+  const bg = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background;
+  const text = colorScheme === 'dark' ? Colors.dark.text : Colors.light.text;
 
   useEffect(() => {
     invalidateUser();
@@ -40,7 +46,8 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView
       edges={['left', 'right']}
-      className="flex-1 bg-gray-100 dark:bg-neutral-900 p-4">
+      className="flex-1 bg-gray-100 dark:bg-neutral-900 p-4"
+    >
       <ProfileHeader
         avatar={apiUser.avatar}
         name={apiUser.name}

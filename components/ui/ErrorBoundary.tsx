@@ -32,11 +32,11 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
   render() {
     if (this.state.hasError) {
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-          <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 12 }}>Something went wrong.</Text>
-          <Text style={{ color: 'gray', marginBottom: 24 }}>{this.state.error?.message}</Text>
-          <Pressable onPress={this.handleReset} style={{ backgroundColor: '#2563eb', padding: 12, borderRadius: 8 }}>
-            <Text style={{ color: 'white', fontWeight: 'bold' }}>Try Again</Text>
+        <View className="flex-1 justify-center items-center p-6">
+          <Text className="text-2xl font-bold mb-3 text-black dark:text-white">Something went wrong.</Text>
+          <Text className="text-gray-500 mb-6">{this.state.error?.message}</Text>
+          <Pressable onPress={this.handleReset} className="bg-blue-600 p-3 rounded-lg">
+            <Text className="text-white font-bold">Try Again</Text>
           </Pressable>
         </View>
       );
