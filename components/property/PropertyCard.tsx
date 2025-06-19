@@ -1,9 +1,10 @@
-import { Property } from '@/types';
-import { Image } from 'expo-image';
+import { Property } from "@/types";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useCallback, useRef, useState } from "react";
 import {
   Dimensions,
+  GestureResponderEvent,
   NativeScrollEvent,
   NativeSyntheticEvent,
   Pressable,
@@ -11,7 +12,6 @@ import {
   Text,
   View,
 } from "react-native";
-
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -23,17 +23,35 @@ export const PropertyCard = React.memo(({ item }: PropertyCardProps) => {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
-  
+  const touchX = useRef<number | null>(null);
+
   // Optimize onScroll handler with useCallback
   const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const index = Math.round(event.nativeEvent.contentOffset.x / screenWidth);
     setActiveIndex(index);
   }, []);
 
-  // Optimize navigation handler with useCallback
   const handlePress = useCallback(() => {
     router.push(`/property/${item.id}`);
   }, [item.id, router]);
+
+  // Smart tap vs swipe handler
+  const handleImageTouchStart = useCallback((e: GestureResponderEvent) => {
+    touchX.current = e.nativeEvent.pageX;
+  }, []);
+  const handleImageTouchEnd = useCallback((e: GestureResponderEvent) => {
+    if (touchX.current !== null) {
+      const dx = Math.abs(e.nativeEvent.pageX - touchX.current);
+      if (dx < 10) {
+        router.push(`/property/${item.id}`);
+        handlePress();
+      }
+      touchX.current = null;
+    }
+  }, [router, item.id, handlePress]);
+
+  // Optimize navigation handler with useCallback
+
 
   return (
     <View className="rounded-2xl mb-4 overflow-hidden bg-white dark:bg-neutral-800 shadow-md dark:shadow-lg">
@@ -50,15 +68,22 @@ export const PropertyCard = React.memo(({ item }: PropertyCardProps) => {
         snapToAlignment="center"
       >
         {item.images.map((img, idx) => (
-          <Image
+          <View
             key={idx}
-            source={{ uri: img }}
-            style={{ width: screenWidth, height: 192 }}
+            onTouchStart={handleImageTouchStart}
+            onTouchEnd={handleImageTouchEnd}
             className="h-48"
-            contentFit="cover"
-            transition={300}
-            cachePolicy="memory-disk"
-          />
+            style={{ width: screenWidth }}
+          >
+            <Image
+              source={{ uri: img }}
+              style={{ width: screenWidth, height: 192 }}
+              className="h-48"
+              contentFit="cover"
+              transition={300}
+              cachePolicy="memory-disk"
+            />
+          </View>
         ))}
       </ScrollView>
       <View className="flex-row justify-center mt-2">
@@ -88,4 +113,4 @@ export const PropertyCard = React.memo(({ item }: PropertyCardProps) => {
   );
 });
 
-PropertyCard.displayName = 'PropertyCard'; 
+PropertyCard.displayName = "PropertyCard";
