@@ -1,5 +1,5 @@
-import { Property } from '@/types';
-import { Image } from 'expo-image';
+import { Property } from "@/types";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useCallback, useRef, useState } from "react";
 import {
@@ -12,7 +12,6 @@ import {
   View,
 } from "react-native";
 
-
 const { width: screenWidth } = Dimensions.get("window");
 
 interface PropertyCardProps {
@@ -23,12 +22,27 @@ export const PropertyCard = React.memo(({ item }: PropertyCardProps) => {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
-  
+  const touchX = useRef<number | null>(null);
+
   // Optimize onScroll handler with useCallback
   const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const index = Math.round(event.nativeEvent.contentOffset.x / screenWidth);
     setActiveIndex(index);
   }, []);
+
+  // Smart tap vs swipe handler
+  const handleImageTouchStart = (e: any) => {
+    touchX.current = e.nativeEvent.pageX;
+  };
+  const handleImageTouchEnd = (e: any) => {
+    if (touchX.current !== null) {
+      const dx = Math.abs(e.nativeEvent.pageX - touchX.current);
+      if (dx < 10) {
+        router.push(`/property/${item.id}`);
+      }
+      touchX.current = null;
+    }
+  };
 
   // Optimize navigation handler with useCallback
   const handlePress = useCallback(() => {
@@ -50,15 +64,22 @@ export const PropertyCard = React.memo(({ item }: PropertyCardProps) => {
         snapToAlignment="center"
       >
         {item.images.map((img, idx) => (
-          <Image
+          <View
             key={idx}
-            source={{ uri: img }}
-            style={{ width: screenWidth, height: 192 }}
+            onTouchStart={handleImageTouchStart}
+            onTouchEnd={handleImageTouchEnd}
             className="h-48"
-            contentFit="cover"
-            transition={300}
-            cachePolicy="memory-disk"
-          />
+            style={{ width: screenWidth }}
+          >
+            <Image
+              source={{ uri: img }}
+              style={{ width: screenWidth, height: 192 }}
+              className="h-48"
+              contentFit="cover"
+              transition={300}
+              cachePolicy="memory-disk"
+            />
+          </View>
         ))}
       </ScrollView>
       <View className="flex-row justify-center mt-2">
@@ -88,4 +109,4 @@ export const PropertyCard = React.memo(({ item }: PropertyCardProps) => {
   );
 });
 
-PropertyCard.displayName = 'PropertyCard'; 
+PropertyCard.displayName = "PropertyCard";
