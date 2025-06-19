@@ -1,13 +1,13 @@
 import { Image } from 'expo-image';
 import React, { memo } from 'react';
-import { Dimensions, ScrollView, View } from 'react-native';
+import { Dimensions, NativeScrollEvent, NativeSyntheticEvent, ScrollView, View } from 'react-native';
 
 const { width: screenWidth } = Dimensions.get('window');
 
 interface PropertyImageCarouselProps {
   images: string[];
   activeIndex: number;
-  onScroll: (event: any) => void;
+  onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   scrollRef: React.RefObject<ScrollView | null>;
 }
 

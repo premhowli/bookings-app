@@ -13,8 +13,7 @@ export default function TabLayout() {
 
   return (
     <View
-      className="flex-1 bg-gray-100 dark:bg-neutral-900"
-      style={{ backgroundColor: colorScheme === 'dark' ? '#171717' : '#f3f4f6' }}
+      className={`flex-1 ${colorScheme === 'dark' ? 'bg-neutral-900' : 'bg-gray-100'}`}
     >
       <Tabs
         screenOptions={{
@@ -23,7 +22,7 @@ export default function TabLayout() {
           tabBarButton: HapticTab,
           tabBarBackground: TabBarBackground,
           tabBarStyle: {
-            backgroundColor: colorScheme === 'dark' ? '#171717' : '#ffffff',
+            backgroundColor: colorScheme === 'dark' ? Colors.dark.background : Colors.light.background,
           },
         }}>
         <Tabs.Screen

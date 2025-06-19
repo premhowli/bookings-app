@@ -1,15 +1,20 @@
+import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
 import React from 'react';
 import { FlatList, Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BookingCard from '../../components/booking/BookingCard';
 import { BookingEmptyState } from '../../components/booking/BookingEmptyState';
 import { BookingLoadingState } from '../../components/booking/BookingLoadingState';
-import { useUserBookings } from '../../hooks/useUserBookings';
+import { useUserBookings } from '../../components/booking/hooks/useUserBookings';
 
 const ITEM_HEIGHT = 112;
 
 export default function BookingsScreen() {
   const { router, user, bookings, isLoading, propertyMap } = useUserBookings();
+  const colorScheme = useColorScheme();
+  const bg = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background;
+  const text = colorScheme === 'dark' ? Colors.dark.text : Colors.light.text;
 
   const renderItem = React.useCallback(
     ({ item }: { item: import('../../types').Booking }) => (
@@ -24,7 +29,7 @@ export default function BookingsScreen() {
         <Text className="text-lg mb-4 text-black dark:text-white">Please log in to view your bookings</Text>
         <Pressable
           onPress={() => router.push('/profile')}
-          className="bg-blue-500 rounded-lg px-6 py-3"
+          className="bg-sky-500 rounded-lg px-6 py-3"
         >
           <Text className="text-white font-bold">Go to Profile</Text>
         </Pressable>
@@ -43,7 +48,8 @@ export default function BookingsScreen() {
   return (
     <SafeAreaView
       edges={['top', 'left', 'right']}
-      className="flex-1 bg-gray-100 dark:bg-neutral-900 px-4">
+      className="flex-1 bg-gray-100 dark:bg-neutral-900 px-4"
+    >
       <FlatList
         data={bookings}
         keyExtractor={(item) => item.id}

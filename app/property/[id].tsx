@@ -4,16 +4,15 @@ import { PropertyCalendar } from '../../components/property/PropertyCalendar';
 import { PropertyFeatures } from '../../components/property/PropertyFeatures';
 import { PropertyImageCarousel } from '../../components/property/PropertyImageCarousel';
 import { PropertyLocationMap } from '../../components/property/PropertyLocationMap';
-import { usePropertyDetails } from '../../hooks/usePropertyDetails';
+import { usePropertyDetails } from '../../components/property/hooks/usePropertyDetails';
 
 export default function PropertyDetailScreen() {
   const {
     property,
     isLoading,
-    backgroundColor,
-    selectedRange,
     activeIndex,
     scrollRef,
+    backgroundColor,
     markedDates,
     handleDayPress,
     marker,
@@ -34,7 +33,7 @@ export default function PropertyDetailScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor }}>
-      <ScrollView className="flex-1" style={{ backgroundColor }}>
+      <ScrollView style={{ flex: 1, backgroundColor }}>
         <PropertyImageCarousel
           images={property.images}
           activeIndex={activeIndex}

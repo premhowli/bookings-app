@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query';
 import { Booking, Property, User } from '../types';
 
-const API_URL = 'http://192.168.68.105:3000';
+const API_URL = 'http://127.0.0.1:3000';
 
 // --- Strongly typed fetch helpers ---
 async function fetchJson<T>(url: string, options?: RequestInit): Promise<T> {

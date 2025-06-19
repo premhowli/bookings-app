@@ -1,6 +1,7 @@
+import { Booking, Property } from '@/types';
 import React from 'react';
 import { Text, View } from 'react-native';
-import { Booking, Property } from '../types';
+
 
 interface BookingCardProps {
   item: Booking;

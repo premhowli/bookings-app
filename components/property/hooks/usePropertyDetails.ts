@@ -1,9 +1,9 @@
 import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Dimensions, ScrollView } from 'react-native';
-import { useScreenTransition } from '../hooks/useScreenTransition';
-import { useCreateBooking, useProperty, usePropertyBookings } from '../services/api';
-import { useStore } from '../store/useStore';
+import { useScreenTransition } from '../../../hooks/useScreenTransition';
+import { useCreateBooking, useProperty, usePropertyBookings } from '../../../services/api';
+import { useStore } from '../../../store/useStore';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -138,7 +138,7 @@ export function usePropertyDetails() {
           userId: user.id.toString(),
           checkIn: selectedRange.startDate,
           checkOut: selectedRange.endDate,
-          status: Math.random() > 0.5 ? 'confirmed' : 'pending',
+          status: 'confirmed',
         },
         user,
       });

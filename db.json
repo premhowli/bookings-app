@@ -52,219 +52,27 @@
   ],
   "bookings": [
     {
-      "id": "96b1",
+      "id": "511f",
       "propertyId": "1",
       "userId": "user1",
-      "checkIn": "2025-06-18",
-      "checkOut": "2025-06-22",
-      "status": "pending"
-    },
-    {
-      "id": "0a92",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-06-18",
-      "checkOut": "2025-06-22",
+      "checkIn": "2025-06-19",
+      "checkOut": "2025-06-21",
       "status": "confirmed"
     },
     {
-      "id": "09b5",
+      "id": "c752",
       "propertyId": "1",
       "userId": "user1",
-      "checkIn": "2025-06-23",
-      "checkOut": "2025-06-25",
+      "checkIn": "2025-06-22",
+      "checkOut": "2025-06-24",
       "status": "confirmed"
     },
     {
-      "id": "ecd5",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-06-26",
-      "checkOut": "2025-06-28",
-      "status": "pending"
-    },
-    {
-      "id": "1701",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-06-26",
-      "checkOut": "2025-06-28",
-      "status": "pending"
-    },
-    {
-      "id": "e195",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-06-26",
-      "checkOut": "2025-06-28",
-      "status": "confirmed"
-    },
-    {
-      "id": "615c",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-08",
-      "checkOut": "2025-07-09",
-      "status": "confirmed"
-    },
-    {
-      "id": "8b9e",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-06-29",
-      "checkOut": "2025-07-02",
-      "status": "confirmed"
-    },
-    {
-      "id": "3383",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-03",
-      "checkOut": "2025-07-05",
-      "status": "pending"
-    },
-    {
-      "id": "e64d",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-03",
-      "checkOut": "2025-07-05",
-      "status": "pending"
-    },
-    {
-      "id": "9ec8",
+      "id": "f67e",
       "propertyId": "2",
       "userId": "user1",
-      "checkIn": "2025-06-18",
-      "checkOut": "2025-06-20",
-      "status": "pending"
-    },
-    {
-      "id": "32af",
-      "propertyId": "2",
-      "userId": "user1",
-      "checkIn": "2025-06-18",
-      "checkOut": "2025-06-20",
-      "status": "confirmed"
-    },
-    {
-      "id": "62e9",
-      "propertyId": "2",
-      "userId": "user1",
-      "checkIn": "2025-06-21",
-      "checkOut": "2025-06-22",
-      "status": "pending"
-    },
-    {
-      "id": "0da5",
-      "propertyId": "2",
-      "userId": "user1",
-      "checkIn": "2025-06-21",
-      "checkOut": "2025-06-22",
-      "status": "pending"
-    },
-    {
-      "id": "0067",
-      "propertyId": "2",
-      "userId": "user1",
-      "checkIn": "2025-06-21",
-      "checkOut": "2025-06-23",
-      "status": "pending"
-    },
-    {
-      "id": "dbdd",
-      "propertyId": "2",
-      "userId": "user1",
-      "checkIn": "2025-06-21",
-      "checkOut": "2025-06-23",
-      "status": "confirmed"
-    },
-    {
-      "id": "2ccf",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-03",
-      "checkOut": "2025-07-04",
-      "status": "pending"
-    },
-    {
-      "id": "9b1e",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-03",
-      "checkOut": "2025-07-04",
-      "status": "pending"
-    },
-    {
-      "id": "fcab",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-03",
-      "checkOut": "2025-07-04",
-      "status": "pending"
-    },
-    {
-      "id": "af8d",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-03",
-      "checkOut": "2025-07-04",
-      "status": "pending"
-    },
-    {
-      "id": "ef8d",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-03",
-      "checkOut": "2025-07-04",
-      "status": "confirmed"
-    },
-    {
-      "id": "d420",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-05",
-      "checkOut": "2025-07-07",
-      "status": "pending"
-    },
-    {
-      "id": "6a9a",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-05",
-      "checkOut": "2025-07-07",
-      "status": "confirmed"
-    },
-    {
-      "id": "da7b",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-10",
-      "checkOut": "2025-07-12",
-      "status": "pending"
-    },
-    {
-      "id": "434e",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-10",
-      "checkOut": "2025-07-12",
-      "status": "pending"
-    },
-    {
-      "id": "31d1",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-10",
-      "checkOut": "2025-07-12",
-      "status": "pending"
-    },
-    {
-      "id": "56e6",
-      "propertyId": "1",
-      "userId": "user1",
-      "checkIn": "2025-07-10",
-      "checkOut": "2025-07-12",
+      "checkIn": "2025-06-24",
+      "checkOut": "2025-06-30",
       "status": "confirmed"
     }
   ],
@@ -274,33 +82,9 @@
     "email": "john@example.com",
     "avatar": "https://...",
     "bookings": [
-      "96b1",
-      "0a92",
-      "09b5",
-      "ecd5",
-      "1701",
-      "e195",
-      "615c",
-      "8b9e",
-      "3383",
-      "e64d",
-      "9ec8",
-      "32af",
-      "62e9",
-      "0da5",
-      "0067",
-      "dbdd",
-      "2ccf",
-      "9b1e",
-      "fcab",
-      "af8d",
-      "ef8d",
-      "d420",
-      "6a9a",
-      "da7b",
-      "434e",
-      "31d1",
-      "56e6"
+      "511f",
+      "c752",
+      "f67e"
     ]
   }
 }

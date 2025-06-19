@@ -1,3 +1,4 @@
+import { Colors } from '@/constants/Colors';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
@@ -9,19 +10,19 @@ const queryClient = new QueryClient();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const bg = colorScheme === 'dark' ? '#171717' : '#f3f4f6';
+  const bg = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background;
 
   return (
     <SafeAreaProvider>
-      <View style={{ flex: 1, backgroundColor: bg }}>
+      <View className={`flex-1 ${colorScheme === 'dark' ? 'bg-neutral-900' : 'bg-gray-100'}`}>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
             <Stack
               screenOptions={{
                 headerStyle: {
-                  backgroundColor: colorScheme === 'dark' ? '#171717' : '#ffffff',
+                  backgroundColor: colorScheme === 'dark' ? Colors.dark.background : Colors.light.background,
                 },
-                headerTintColor: colorScheme === 'dark' ? '#ffffff' : '#000000',
+                headerTintColor: colorScheme === 'dark' ? Colors.dark.text : Colors.light.text,
                 headerShadowVisible: false,
                 gestureEnabled: true,
                 gestureDirection: 'horizontal',

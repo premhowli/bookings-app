@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ProfileHeader } from '../../components/profile/ProfileHeader';
 import { ProfileLogin } from '../../components/profile/ProfileLogin';
 import { ProfileLogout } from '../../components/profile/ProfileLogout';
-import { useProfile } from '../../hooks/useProfile';
+import { useProfile } from '../../components/profile/hooks/useProfile';
 
 export default function ProfileScreen() {
   const {
@@ -40,7 +40,8 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView
       edges={['left', 'right']}
-      className="flex-1 bg-gray-100 dark:bg-neutral-900 p-4">
+      className="flex-1 bg-gray-100 dark:bg-neutral-900 p-4"
+    >
       <ProfileHeader
         avatar={apiUser.avatar}
         name={apiUser.name}

@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useCallback } from 'react';
-import { useUser } from '../services/api';
-import { useStore } from '../store/useStore';
+import { useUser } from '../../../services/api';
+import { useStore } from '../../../store/useStore';
 
 export function useProfile() {
   const user = useStore((state) => state.user);
