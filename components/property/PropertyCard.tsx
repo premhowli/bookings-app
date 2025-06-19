@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import React, { useCallback, useRef, useState } from "react";
 import {
   Dimensions,
+  GestureResponderEvent,
   NativeScrollEvent,
   NativeSyntheticEvent,
   Pressable,
@@ -30,24 +31,27 @@ export const PropertyCard = React.memo(({ item }: PropertyCardProps) => {
     setActiveIndex(index);
   }, []);
 
+  const handlePress = useCallback(() => {
+    router.push(`/property/${item.id}`);
+  }, [item.id, router]);
+
   // Smart tap vs swipe handler
-  const handleImageTouchStart = (e: any) => {
+  const handleImageTouchStart = useCallback((e: GestureResponderEvent) => {
     touchX.current = e.nativeEvent.pageX;
-  };
-  const handleImageTouchEnd = (e: any) => {
+  }, []);
+  const handleImageTouchEnd = useCallback((e: GestureResponderEvent) => {
     if (touchX.current !== null) {
       const dx = Math.abs(e.nativeEvent.pageX - touchX.current);
       if (dx < 10) {
         router.push(`/property/${item.id}`);
+        handlePress();
       }
       touchX.current = null;
     }
-  };
+  }, [router, item.id, handlePress]);
 
   // Optimize navigation handler with useCallback
-  const handlePress = useCallback(() => {
-    router.push(`/property/${item.id}`);
-  }, [item.id, router]);
+
 
   return (
     <View className="rounded-2xl mb-4 overflow-hidden bg-white dark:bg-neutral-800 shadow-md dark:shadow-lg">
