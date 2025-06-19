@@ -80,8 +80,11 @@ npx expo start
 
 ## 📝 Notes
 
-- **Fuzzy search** is not enabled as part of the demo but will enhance the user experience a lot.
+- **Fuzzy search** is not implemented as part of the demo but will enhance the user experience a lot.
 - **Lazy loading** is handled automatically by Expo Router for screens; we can use `React.lazy`/`Suspense` for heavy sub-components if needed in future.
+- **Login** is handled statically here, and basically just storing the api data in store to provide access to the app.
+- **Booking Confirmation** all bookings are confirmed booking in the app.
+- **List optimizations** are useless at this moment as the data is too short but kept to handle once it scales.
 
 ---
 
